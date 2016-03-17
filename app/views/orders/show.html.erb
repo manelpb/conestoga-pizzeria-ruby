@@ -1,4 +1,49 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <strong>User:</strong>
+  <%= @order.user %>
+</p>
+
+<p>
+  <strong>Delivery address:</strong>
+  <%= @order.delivery_address %>
+</p>
+
+<p>
+  <strong>Delivery postalcode:</strong>
+  <%= @order.delivery_postalcode %>
+</p>
+
+<p>
+  <strong>Delivery province:</strong>
+  <%= @order.delivery_province %>
+</p>
+
+<p>
+  <strong>Delivery city:</strong>
+  <%= @order.delivery_city %>
+</p>
+
+<p>
+  <strong>Pizza size:</strong>
+  <%= @order.pizza_size %>
+</p>
+
+<p>
+  <strong>Pizza toppings:</strong>
+  <%= @order.pizza_toppings %>
+</p>
+
+<p>
+  <strong>Pizza crust:</strong>
+  <%= @order.pizza_crust %>
+</p>
+
+<p>
+  <strong>Delivered:</strong>
+  <%= @order.delivered %>
+</p>
+
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

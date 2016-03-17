@@ -11,7 +11,51 @@
     </div>
   <% end %>
 
+  <div class="form-group">
+    <%= f.label :delivery_address %><br>
+    <%= f.text_field :delivery_address, :class => 'form-control' %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :delivery_postalcode %><br>
+    <%= f.text_field :delivery_postalcode, :class => 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :delivery_province %><br>
+    <%= f.text_field :delivery_province, :class => 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :delivery_city %><br>
+    <%= f.text_field :delivery_city, :class => 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :pizza_size %><br>
+    <%= f.radio_button :pizza_size, :small %><%= f.label :pizza_size_small, 'Small'  %>
+    <%= f.radio_button :pizza_size, :medium %><%= f.label :pizza_size_medium, 'Medium'  %>
+    <%= f.radio_button :pizza_size, :large %><%= f.label :pizza_size_large, 'Large'  %>
+  </div>
+  <div class="field">
+    <%= f.label :pizza_toppings %><br>
+    <%= f.check_box :pizza_toppings, {multiple: true}, 'pineapple' %><%= f.label :pizza_toppings_pineapple, 'Pineapple'  %>
+    <%= f.check_box :pizza_toppings, {multiple: true}, 'ham' %><%= f.label :pizza_toppings_ham, 'Ham'  %>
+    <%= f.check_box :pizza_toppings, {multiple: true}, 'extracheese' %><%= f.label :pizza_toppings_extracheese, 'Extra cheese'  %>
+    <%= f.check_box :pizza_toppings, {multiple: true}, 'bacon' %><%= f.label :pizza_toppings_bacon, 'Bacon'  %>
+  </div>
+  <div class="field">
+    <%= f.label :pizza_crust %><br>
+    <%= f.radio_button :pizza_crust, :pam %><%= f.label :pizza_crust_small, 'Pam'  %>
+    <%= f.radio_button :pizza_crust, :french %><%= f.label :pizza_crust_medium, 'French'  %>
+    <%= f.radio_button :pizza_crust, :thin %><%= f.label :pizza_crust_large, 'Thin'  %>
+  </div>
+  
+  
+    <div class="field">
+      <%= f.label :delivered %><br>
+      <%= f.check_box :delivered %>
+    </div>
+  
+  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Place order", :class => 'btn btn-primary' %>
   </div>
 <% end %>
