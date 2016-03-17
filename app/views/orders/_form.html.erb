@@ -48,12 +48,12 @@
     <%= f.radio_button :pizza_crust, :thin %><%= f.label :pizza_crust_large, 'Thin'  %>
   </div>
   
-  
+  <% if current_user.admin? -%>
     <div class="field">
       <%= f.label :delivered %><br>
       <%= f.check_box :delivered %>
     </div>
-  
+  <% end -%>
   
   <div class="actions">
     <%= f.submit "Place order", :class => 'btn btn-primary' %>
