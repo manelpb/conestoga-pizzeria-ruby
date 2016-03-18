@@ -11,51 +11,66 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :delivery_address %><br>
-    <%= f.text_field :delivery_address, :class => 'form-control' %>
+
+  <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <%= f.label :delivery_address %><br>
+          <%= f.text_field :delivery_address, :class => 'form-control' %>
+        </div>
+      </div>
   </div>
   
-  <div class="field">
-    <%= f.label :delivery_postalcode %><br>
-    <%= f.text_field :delivery_postalcode, :class => 'form-control' %>
+  <div class="row">
+      <div class="col-md-4">
+          <div class="form-group">
+              <%= f.label :delivery_city %><br>
+              <%= f.text_field :delivery_city, :class => 'form-control' %>
+          </div>
+      </div>
+  
+      <div class="col-md-2">
+          <div class="form-group">
+              <%= f.label :delivery_province %><br>
+              <%= select_tag :delivery_province, options_for_select(@order.provinces), :class => 'form-control' %>
+          </div>
+      </div>
+  
+      <div class="col-md-2">
+          <div class="form-group">
+              <%= f.label :delivery_postalcode %><br>
+              <%= f.text_field :delivery_postalcode, :class => 'form-control postal-code' %>
+          </div>
+      </div>
   </div>
-  <div class="field">
-    <%= f.label :delivery_province %><br>
-    <%= f.text_field :delivery_province, :class => 'form-control' %>
-  </div>
-  <div class="field">
-    <%= f.label :delivery_city %><br>
-    <%= f.text_field :delivery_city, :class => 'form-control' %>
-  </div>
-  <div class="field">
+  
+  <div class="form-group checks">
     <%= f.label :pizza_size %><br>
-    <%= f.radio_button :pizza_size, :small %><%= f.label :pizza_size_small, 'Small'  %>
-    <%= f.radio_button :pizza_size, :medium %><%= f.label :pizza_size_medium, 'Medium'  %>
-    <%= f.radio_button :pizza_size, :large %><%= f.label :pizza_size_large, 'Large'  %>
+    <%= f.radio_button :pizza_size, :small %> <%= f.label :pizza_size_small, 'Small'  %>
+    <%= f.radio_button :pizza_size, :medium %> <%= f.label :pizza_size_medium, 'Medium'  %>
+    <%= f.radio_button :pizza_size, :large %> <%= f.label :pizza_size_large, 'Large'  %>
   </div>
-  <div class="field">
+  
+  <div class="form-group checks">
     <%= f.label :pizza_toppings %><br>
-    <%= f.check_box :pizza_toppings, {multiple: true}, 'pineapple' %><%= f.label :pizza_toppings_pineapple, 'Pineapple'  %>
-    <%= f.check_box :pizza_toppings, {multiple: true}, 'ham' %><%= f.label :pizza_toppings_ham, 'Ham'  %>
-    <%= f.check_box :pizza_toppings, {multiple: true}, 'extracheese' %><%= f.label :pizza_toppings_extracheese, 'Extra cheese'  %>
-    <%= f.check_box :pizza_toppings, {multiple: true}, 'bacon' %><%= f.label :pizza_toppings_bacon, 'Bacon'  %>
+    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('pineapple')}, 'pineapple', nil %> <%= f.label :pizza_toppings_pineapple, 'Pineapple'   %>
+    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('ham')}, 'ham', nil %> <%= f.label :pizza_toppings_ham, 'Ham'  %>
+    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('extracheese')}, 'extracheese', nil %> <%= f.label :pizza_toppings_extracheese, 'Extra cheese'  %>
+    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('bacon')}, 'bacon', nil %> <%= f.label :pizza_toppings_bacon, 'Bacon'  %>
   </div>
-  <div class="field">
+  <div class="form-group checks">
     <%= f.label :pizza_crust %><br>
-    <%= f.radio_button :pizza_crust, :pam %><%= f.label :pizza_crust_small, 'Pam'  %>
-    <%= f.radio_button :pizza_crust, :french %><%= f.label :pizza_crust_medium, 'French'  %>
-    <%= f.radio_button :pizza_crust, :thin %><%= f.label :pizza_crust_large, 'Thin'  %>
+    <%= f.radio_button :pizza_crust, :pam %> <%= f.label :pizza_crust_small, 'Pam'  %>
+    <%= f.radio_button :pizza_crust, :french %> <%= f.label :pizza_crust_medium, 'French'  %>
+    <%= f.radio_button :pizza_crust, :thin %> <%= f.label :pizza_crust_large, 'Thin'  %>
   </div>
   
   <% if current_user.admin? -%>
-    <div class="field">
+    <div class="form-group">
       <%= f.label :delivered %><br>
       <%= f.check_box :delivered %>
     </div>
   <% end -%>
   
-  <div class="actions">
-    <%= f.submit "Place order", :class => 'btn btn-primary' %>
-  </div>
+  <%= f.submit "Place order", :class => 'btn btn-primary' %>
 <% end %>

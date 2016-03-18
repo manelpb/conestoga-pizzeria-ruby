@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   
   get 'make-pizza' => 'checkout#makepizza'
-  resources :orders
+  
+  resources :orders do
+    get 'success' => 'orders#success'
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

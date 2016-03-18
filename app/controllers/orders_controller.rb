@@ -21,11 +21,16 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
   end
+  
+  def success
+    @order = Order.find(params[:order_id])
+  end
 
   # POST /orders
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    @order.user_id = current_user.id
 
     respond_to do |format|
       if @order.save
@@ -70,6 +75,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:user_id, :delivery_address, :delivery_postalcode, :delivery_province, :delivery_city, :pizza_size, :pizza_toppings, :pizza_crust, :delivered)
+      params.require(:order).permit(:delivery_address, :delivery_postalcode, :delivery_province, :delivery_city, :pizza_size, :pizza_crust, :delivered, pizza_toppings:[])
     end
 end

@@ -1,0 +1,32 @@
+<div class="page-header">
+    <h1>Hello <%= @order.user %>, your order has been placed #<%= @order.id %></h1>
+</div>
+
+<p id="notice"><%= notice %></p>
+
+<% if @order.delivered? -%>
+<div class="alert alert-success" role="alert">
+    Your order is set to be delivered
+</div>
+<% end -%>
+
+<h4>Delivery address</h4>
+<div class="well">
+    <%= @order.delivery_address %>, <%= @order.delivery_province %> - <%= @order.delivery_city %> - <%= @order.delivery_postalcode %>
+</div>
+
+<h4>Your order</h4>
+<div class="well">
+    <dl class="dl-horizontal">
+      <dt>Pizza size: </dt>
+      <dd><%= @order.pizza_size %></dd>
+      
+      <dt>Toppings: </dt>
+      <dd><%= @order.pizza_toppings %></dd>
+      
+      <dt>Crust option: </dt>
+      <dd><%= @order.pizza_crust %></dd>
+    </dl>
+</div>
+
+<%= link_to 'Order a new pizza', new_order_path, :class => 'btn btn-default' %>
