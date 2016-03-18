@@ -37,7 +37,7 @@
             
             <% if current_user && current_user.admin? -%>
             <li>
-              <%= link_to('List Orders', order_path)  %>  
+              <%= link_to('List Orders', orders_path)  %>  
             </li>
             <% end -%>
             
@@ -69,10 +69,21 @@
       </div>
     </nav>
 
-
     <div class="container">
-    
-    <%= yield %>
+      
+      <% if flash[:notice] -%>
+      <div class="alert alert-success">
+        <%= flash[:notice] %>
+      </div>
+      <% end -%>
+      
+      <% if flash[:error] -%>
+      <div class="alert alert-danger">
+        <%= flash[:error] %>
+      </div>
+      <% end -%>
+      
+      <%= yield %>
     
     </div> <!-- /container -->
 

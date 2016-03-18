@@ -1,11 +1,9 @@
-<div class="page-header">
-    <h1>Hello <%= @order.user %>, your order has been placed #<%= @order.id %></h1>
+<div class="page-header success">
+    <h1>Your order has been placed #<%= @order.id %></h1>
 </div>
 
-<p id="notice"><%= notice %></p>
-
 <% if @order.delivered? -%>
-<div class="alert alert-success" role="alert">
+<div class="alert alert-info" role="alert">
     Your order is set to be delivered
 </div>
 <% end -%>
@@ -29,4 +27,5 @@
     </dl>
 </div>
 
-<%= link_to 'Order a new pizza', new_order_path, :class => 'btn btn-default' %>
+<h4>Total</h4>
+<h4><%= number_to_currency @order.total %></h4>

@@ -4,7 +4,6 @@ class Order < ActiveRecord::Base
   validates :delivery_postalcode, zipcode: { country_code: :ca }
   validates :delivery_address, presence: true
   validates :delivery_city, presence: true
-  validates :delivery_province, presence: true
   validates :pizza_size, presence: true
   validates :pizza_toppings, presence: true
   validates :pizza_crust, presence: true
@@ -15,6 +14,24 @@ class Order < ActiveRecord::Base
   
   before_save do
       self.pizza_toppings.gsub!(/[\[\]\"]/, "") if attribute_present?("pizza_toppings")
+  end
+  
+  def total
+    @subtotal = 0
+    
+    if self.pizza_size == 'small'
+      @subtotal += 5
+    elsif self.pizza_size == 'medium'
+      @subtotal += 10
+    elsif self.pizza_size == 'large'
+      @subtotal += 15
+    end
+    
+    # first topping is free 
+    @subtotal += (self.pizza_toppings.split(',').count - 1) * 5;
+    
+    # crust option is free
+    #@subtotal =+ 0
   end
   
   def provinces 

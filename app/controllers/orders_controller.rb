@@ -1,11 +1,12 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :check_admin, only: [:deliver, :update, :destroy, :index]
 
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.all.order(created_at: :desc)
   end
 
   # GET /orders/1
@@ -22,6 +23,19 @@ class OrdersController < ApplicationController
   def edit
   end
   
+  def deliver
+    @order = Order.find(params[:order_id])
+    @order.delivered = true
+
+    respond_to do |format|
+      if @order.save()
+        format.html { redirect_to orders_path, notice: 'Order was successfully set as delivered.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+  
   def success
     @order = Order.find(params[:order_id])
   end
@@ -34,11 +48,9 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
+        format.html { redirect_to order_success_path(:order_id => @order.id) }
       else
         format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -48,11 +60,9 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order }
+        format.html { redirect_to orders_path, notice: 'Order was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -71,6 +81,12 @@ class OrdersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
+    end
+    
+    def check_admin
+      if !current_user.admin?
+        redirect_to root_path, error: 'You cannot access this area'
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

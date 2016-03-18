@@ -53,16 +53,22 @@
   
   <div class="form-group checks">
     <%= f.label :pizza_toppings %><br>
-    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('pineapple')}, 'pineapple', nil %> <%= f.label :pizza_toppings_pineapple, 'Pineapple'   %>
-    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('ham')}, 'ham', nil %> <%= f.label :pizza_toppings_ham, 'Ham'  %>
-    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('extracheese')}, 'extracheese', nil %> <%= f.label :pizza_toppings_extracheese, 'Extra cheese'  %>
-    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('bacon')}, 'bacon', nil %> <%= f.label :pizza_toppings_bacon, 'Bacon'  %>
+    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('Pineapple')}, 'Pineapple', nil %> <%= f.label :pizza_toppings_pineapple, 'Pineapple'   %>
+    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('Ham')}, 'Ham', nil %> <%= f.label :pizza_toppings_ham, 'Ham'  %>
+    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('Extracheese')}, 'Extracheese', nil %> <%= f.label :pizza_toppings_extracheese, 'Extra cheese'  %>
+    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('Bacon')}, 'Bacon', nil %> <%= f.label :pizza_toppings_bacon, 'Bacon'  %>
+    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('Ranch')}, 'Ranch', nil %> <%= f.label :pizza_toppings_bacon, 'Ranch'  %>
+    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('Blackolives')}, 'Blackolives', nil %> <%= f.label :pizza_toppings_bacon, 'blackolives'  %>
+    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('Pepperoni')}, 'Pepperoni', nil %> <%= f.label :pizza_toppings_bacon, 'Pepperoni'  %>
+    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('Onion')}, 'Onion', nil %> <%= f.label :pizza_toppings_bacon, 'Onion'  %>
+    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('Bluecheese')}, 'Bluecheese', nil %> <%= f.label :pizza_toppings_bacon, 'bluecheese'  %>
+    <%= f.check_box :pizza_toppings, {multiple: true, checked:checked('Bbarbecue')}, 'Barbecue', nil %> <%= f.label :pizza_toppings_bacon, 'Barbecue'  %>
   </div>
   <div class="form-group checks">
     <%= f.label :pizza_crust %><br>
-    <%= f.radio_button :pizza_crust, :pam %> <%= f.label :pizza_crust_small, 'Pam'  %>
-    <%= f.radio_button :pizza_crust, :french %> <%= f.label :pizza_crust_medium, 'French'  %>
-    <%= f.radio_button :pizza_crust, :thin %> <%= f.label :pizza_crust_large, 'Thin'  %>
+    <%= f.radio_button :pizza_crust, :pam %> <%= f.label :pizza_crust_pam, 'Pam'  %>
+    <%= f.radio_button :pizza_crust, :french %> <%= f.label :pizza_crust_french, 'French'  %>
+    <%= f.radio_button :pizza_crust, :thin %> <%= f.label :pizza_crust_thin, 'Thin'  %>
   </div>
   
   <% if current_user.admin? -%>
@@ -72,5 +78,11 @@
     </div>
   <% end -%>
   
-  <%= f.submit "Place order", :class => 'btn btn-primary' %>
+  <% if @order.new_record? -%>
+    <%= f.submit "Place order", :class => 'btn btn-primary' %>
+  <% else -%>
+    <%= f.submit "Update order", :class => 'btn btn-primary' %>
+    <%= link_to 'Back', orders_path, :class => 'btn btn-info' %>
+  <% end -%>
+  
 <% end %>
