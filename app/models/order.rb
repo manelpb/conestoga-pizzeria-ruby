@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
   validates :delivery_postalcode, zipcode: { country_code: :ca }
   validates :delivery_address, presence: true
   validates :delivery_city, presence: true
+  validates :delivery_province, presence: true
   validates :pizza_size, presence: true
   validates :pizza_toppings, presence: true
   validates :pizza_crust, presence: true
@@ -34,11 +35,4 @@ class Order < ActiveRecord::Base
     #@subtotal =+ 0
   end
   
-  def provinces 
-      return [
-            ['Ontario'],
-            ['Quebec'],
-            ['Manitoba']
-          ]
-  end
 end

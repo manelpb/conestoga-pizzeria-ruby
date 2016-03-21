@@ -5,9 +5,9 @@
 <table class="table">
   <thead>
     <tr>
-      <th>User</th>
+      <th>Customer Info</th>
       <th>Pizza</th>
-      <th></th>
+      <th class="options"></th>
     </tr>
   </thead>
 
@@ -34,11 +34,13 @@
           <strong>Crust option: </strong><%= order.pizza_crust %>
         </td>
         <td>
-          <%= link_to 'Edit', edit_order_path(order), :class => 'btn btn-sm btn-info' %>
+          <%= link_to 'Show', order_path(order), :class => 'btn btn-xs btn-info' %>
+          <%= link_to 'Edit', edit_order_path(order), :class => 'btn btn-xs btn-info' %>
+          <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
           <% if !order.delivered -%>
-          <%= link_to 'Mark as delivered', order_deliver_path(:order_id => order.id), :class => 'btn btn-sm btn-default' %>
+            <br />
+            <%= link_to 'Mark as delivered', order_deliver_path(:order_id => order.id), :class => 'btn btn-xs btn-default btn-mark-delivered' %>
           <% end -%>
-          <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-sm btn-danger' %>
         </td>
       </tr>
     <% end %>

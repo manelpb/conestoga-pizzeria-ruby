@@ -1,49 +1,31 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1>Order #<%= @order.id %></h1>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @order.user %>
-</p>
+<h4>Delivery address</h4>
+<div class="well">
+    <%= @order.delivery_address %>, <%= @order.delivery_province %> - <%= @order.delivery_city %> - <%= @order.delivery_postalcode %>
+</div>
 
-<p>
-  <strong>Delivery address:</strong>
-  <%= @order.delivery_address %>
-</p>
+<h4>Your order</h4>
+<div class="well">
+    <dl class="dl-horizontal">
+      <dt>Pizza size: </dt>
+      <dd><%= @order.pizza_size %></dd>
+      
+      <dt>Toppings: </dt>
+      <dd><%= @order.pizza_toppings %></dd>
+      
+      <dt>Crust option: </dt>
+      <dd><%= @order.pizza_crust %></dd>
+    </dl>
+</div>
 
-<p>
-  <strong>Delivery postalcode:</strong>
-  <%= @order.delivery_postalcode %>
-</p>
+<h4>Total</h4>
+<h4><%= number_to_currency @order.total %></h4>
 
-<p>
-  <strong>Delivery province:</strong>
-  <%= @order.delivery_province %>
-</p>
+<% if current_user.admin? -%>
+  <%= link_to 'Edit', edit_order_path(@order) %> |
+  <%= link_to 'Back', orders_path %>
+<% end -%>
 
-<p>
-  <strong>Delivery city:</strong>
-  <%= @order.delivery_city %>
-</p>
-
-<p>
-  <strong>Pizza size:</strong>
-  <%= @order.pizza_size %>
-</p>
-
-<p>
-  <strong>Pizza toppings:</strong>
-  <%= @order.pizza_toppings %>
-</p>
-
-<p>
-  <strong>Pizza crust:</strong>
-  <%= @order.pizza_crust %>
-</p>
-
-<p>
-  <strong>Delivered:</strong>
-  <%= @order.delivered %>
-</p>
-
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
