@@ -2,6 +2,12 @@
   <h1>Log in</h1>
 </div>
 
+<% if alert -%>
+  <div class="alert alert-danger">
+    <%= alert %>
+  </div>
+<% end -%>
+
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-group">
     <%= f.label :email %><br />

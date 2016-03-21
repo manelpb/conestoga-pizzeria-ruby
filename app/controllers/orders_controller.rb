@@ -4,13 +4,11 @@ class OrdersController < ApplicationController
   before_action :check_admin, only: [:deliver, :update, :destroy, :index]
 
   # GET /orders
-  # GET /orders.json
   def index
     @orders = Order.all.order(created_at: :desc)
   end
 
   # GET /orders/1
-  # GET /orders/1.json
   def show
   end
 
@@ -22,7 +20,8 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
   end
-  
+
+  # GET /orders/1/delivery  
   def deliver
     @order = Order.find(params[:order_id])
     @order.delivered = true
