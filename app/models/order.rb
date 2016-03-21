@@ -18,21 +18,22 @@ class Order < ActiveRecord::Base
   end
   
   def total
-    @subtotal = 0
+    subtotal = 0
     
     if self.pizza_size == 'small'
-      @subtotal += 5
+      subtotal += 5
     elsif self.pizza_size == 'medium'
-      @subtotal += 10
+      subtotal += 10
     elsif self.pizza_size == 'large'
-      @subtotal += 15
+      subtotal += 15
     end
     
     # first topping is free 
-    @subtotal += (self.pizza_toppings.split(',').count - 1) * 5;
+    subtotal += (self.pizza_toppings.split(',').count - 1) * 5;
     
     # crust option is free
-    #@subtotal =+ 0
+    #subtotal =+ 0
+    return subtotal
   end
   
 end
