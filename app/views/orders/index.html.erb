@@ -20,7 +20,7 @@
           <strong>Delivery address:</strong> <%= order.delivery_address %>, <%= order.delivery_postalcode %> - <%= order.delivery_province %> - <%= order.delivery_city %>
           
           <% if order.delivered -%>
-            <span class="label label-success">Delivered</span>
+            <span class="label label-success">Complete (Delivered)</span>
           <% else -%>
             <span class="label label-default">Waiting</span>
           <% end -%>
@@ -39,7 +39,7 @@
           <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
           <% if !order.delivered -%>
             <br />
-            <%= link_to 'Mark as delivered', order_deliver_path(:order_id => order.id), :class => 'btn btn-xs btn-default btn-mark-delivered' %>
+            <%= link_to 'Mark as complete', order_deliver_path(:order_id => order.id), :class => 'btn btn-xs btn-default btn-mark-delivered' %>
           <% end -%>
         </td>
       </tr>
