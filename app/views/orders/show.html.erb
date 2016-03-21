@@ -2,6 +2,11 @@
   <h1>Order #<%= @order.id %></h1>
 </div>
 
+<h4>Customer</h4>
+<div class="well">
+    <%= @order.user.first_name %> <%= @order.user.last_name %> - <%= @order.user.email %> 
+</div>
+
 <h4>Delivery address</h4>
 <div class="well">
     <%= @order.delivery_address %>, <%= @order.delivery_province %> - <%= @order.delivery_city %> - <%= @order.delivery_postalcode %>
