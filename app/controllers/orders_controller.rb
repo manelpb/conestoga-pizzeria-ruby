@@ -35,12 +35,12 @@ class OrdersController < ApplicationController
     end
   end
   
+  # GET /orders/1/success
   def success
     @order = Order.find(params[:order_id])
   end
 
   # POST /orders
-  # POST /orders.json
   def create
     @order = Order.new(order_params)
     @order.user_id = current_user.id
@@ -55,7 +55,6 @@ class OrdersController < ApplicationController
   end
 
   # PATCH/PUT /orders/1
-  # PATCH/PUT /orders/1.json
   def update
     respond_to do |format|
       if @order.update(order_params)
@@ -67,7 +66,6 @@ class OrdersController < ApplicationController
   end
 
   # DELETE /orders/1
-  # DELETE /orders/1.json
   def destroy
     @order.destroy
     respond_to do |format|
@@ -82,6 +80,7 @@ class OrdersController < ApplicationController
       @order = Order.find(params[:id])
     end
     
+    # just checks if the user is an admin
     def check_admin
       if !current_user.admin?
         redirect_to root_path, error: 'You cannot access this area'
