@@ -22,4 +22,7 @@ test:
   <<: *default
 
 production:
-  <<: *default
+  host: "ec2-54-235-85-65.compute-1.amazonaws.com"
+  database: "davvmkaf2cl61j"
+  username: xflxrsgvtdokgr
+  password: HZ4A1j1XGZLdeDNMAM3rQRzTLC
